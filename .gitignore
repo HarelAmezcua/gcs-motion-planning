@@ -1,0 +1,5 @@
+# ignore common files
+common-files/
+
+src/auxiliar/__pycache__/
+*.pyc
