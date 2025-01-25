@@ -45,7 +45,7 @@ def add_custom_wsg(plant):
         The model instance of the added gripper.
     """
     # Get the path to the gripper SDF file
-    gripper_path = os.path.join(get_parent_directory(), 'common-files','final_gripper','files','final_gripper.sdf')
+    gripper_path = os.path.join(get_parent_directory(), 'common-files','models','final_gripper','files','final_gripper.sdf')
 
     if not os.path.exists(gripper_path):
         raise FileNotFoundError(f"SDF file not found at {gripper_path}")
