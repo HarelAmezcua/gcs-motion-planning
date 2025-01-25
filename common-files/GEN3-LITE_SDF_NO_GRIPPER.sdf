@@ -1,0 +1,344 @@
+<?xml version="1.0"?>
+
+<sdf version="1.7">
+    <model name="KINOVA_GEN3_LITE">
+      <pose>0 0 0 0 0 0</pose>
+  
+      <!-- BASE -->
+      <link name="BASE">
+        <pose>0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0.00244324 0.00015573 0.08616742 3.141592 0 0</pose>
+          <mass>1.14608471</mass>
+          <inertia>
+            <ixx>0.00335854</ixx>
+            <ixy>3.9E-07</ixy>
+            <ixz>0.00010989</ixz>
+            <iyy>0.003311</iyy>
+            <iyz>1.91E-06</iyz>
+            <izz>0.00077158</izz>
+          </inertia>
+        </inertial>
+        <collision name="BASE_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>file://./home/drake-tests/common-files/obj/base_link.obj</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="BASE_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>file://./home/drake-tests/common-files/obj/base_link.obj</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+          
+        </visual>
+      </link>
+
+      <!-- SHOULDER -->
+      <link name="SHOULDER">
+        <pose >0 0 0.12825 0 0 0</pose>
+        <inertial>
+          <pose >2.477E-05 0.02213531 0.09937686 0 0 0</pose>
+          <mass>0.95974404</mass>
+          <inertia>
+            <ixx>0.00165947</ixx>
+            <ixy>2E-08</ixy>
+            <ixz>3.6E-07</ixz>
+            <iyy>0.00140355</iyy>
+            <iyz>0.00034927</iyz>
+            <izz>0.00089493</izz>
+          </inertia>
+        </inertial>
+        <collision name="SHOULDER_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>file://./home/drake-tests/common-files/obj/shoulder_link.obj</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="SHOULDER_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>file://./home/drake-tests/common-files/obj/shoulder_link.obj</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+        </visual>
+      </link>
+
+      <joint name="J0" type="revolute">
+        <parent>BASE</parent>
+        <child>SHOULDER</child>
+        <pose>0 0 0 0 0 0</pose>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-2.76</lower>
+            <upper>2.76</upper>
+            <effort>10</effort>
+            <velocity>0.35</velocity>
+          </limit>
+          <dynamics>
+            <damping>0</damping>
+            <friction>0</friction>
+          </dynamics>
+        </axis>
+      </joint>
+
+      <!-- ARM -->
+      <link name="ARM">
+        <pose>0 -0.03 0.24325 1.5708 0 0</pose> <!-- -->
+        <inertial>
+          <pose>0.02998299 0.21154808 0.0453031 0 0 0</pose>
+          <mass>1.17756164</mass>
+          <inertia>
+            <ixx>0.01149277</ixx>
+            <ixy>1E-06</ixy>
+            <ixz>1.6E-07</ixz>
+            <iyy>0.00102851</iyy>
+            <iyz>0.00140765</iyz>
+            <izz>0.01133492</izz>
+          </inertia>
+        </inertial>
+        <collision name="ARM_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>file://./home/drake-tests/common-files/obj/arm_link.obj</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="ARM_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>file://./home/drake-tests/common-files/obj/arm_link.obj</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+          
+        </visual>
+      </link>
+      <joint name="J1" type="revolute">
+        <parent>SHOULDER</parent>
+        <child>ARM</child>
+        <pose>0 0 0 0 0 0</pose>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-2.76</lower>
+            <upper>2.76</upper>
+            <effort>14</effort>
+            <velocity>0.35</velocity>
+          </limit>
+          <dynamics>
+            <damping>0</damping>
+            <friction>0</friction>
+          </dynamics>
+        </axis>
+      </joint>
+
+       <!-- FOREARM -->
+      <link name="FOREARM">
+        <pose>0 -0.03 0.52325 -1.5708 0 0</pose>
+        <inertial>
+          <pose>0.0301559 -0.09502206 0.0073555 0 0 0</pose>
+          <mass>0.59767669</mass>
+          <inertia>
+            <ixx>0.00163256</ixx>
+            <ixy>7.11E-06</ixy>
+            <ixz>1.54E-06</ixz>
+            <iyy>0.00029798</iyy>
+            <iyz>9.587E-05</iyz>
+            <izz>0.00169091</izz>
+          </inertia>
+        </inertial>
+        <collision name="FOREARM_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>file://./home/drake-tests/common-files/obj/forearm_link.obj</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="FOREARM_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>file://./home/drake-tests/common-files/obj/forearm_link.obj</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+          
+        </visual>
+      </link>
+      <joint name="J2" type="revolute">
+        <parent>ARM</parent>
+        <child>FOREARM</child>
+        <pose>0 0 0 0 0 0</pose>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-2.76</lower>
+            <upper>2.76</upper>
+            <effort>10</effort>
+            <velocity>0.35</velocity>
+          </limit>
+          <dynamics>
+            <damping>0</damping>
+            <friction>0</friction>
+          </dynamics>
+        </axis>
+      </joint>
+
+            <!-- LOWER_WRIST -->
+      <link name="LOWER_WRIST">
+        <pose>0 -0.01 0.66325 0 0 0</pose>
+        <inertial>
+          <pose>0.005752 0.010004 0.087192 0 0 0</pose>
+          <mass>0.52693412</mass>
+          <inertia>
+            <ixx>0.00069098</ixx>
+            <ixy>2.4E-07</ixy>
+            <ixz>0.00016483</ixz>
+            <iyy>0.00078519</iyy>
+            <iyz>7.4E-07</iyz>
+            <izz>0.00034115</izz>
+          </inertia>
+        </inertial>
+        <collision name="LOWER_WRIST_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>file://./home/drake-tests/common-files/obj/lower_wrist_link.obj</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="LOWER_WRIST_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>file://./home/drake-tests/common-files/obj/lower_wrist_link.obj</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+          
+        </visual>
+      </link>
+      <joint name="J3" type="revolute">
+        <parent>FOREARM</parent>
+        <child>LOWER_WRIST</child>
+        <pose>0 0 0 0 0 0</pose>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-2.67</lower>
+            <upper>2.67</upper>
+            <effort>7</effort>
+            <velocity>0.35</velocity>
+          </limit>
+          <dynamics>
+            <damping>0</damping>
+            <friction>0</friction>
+          </dynamics>
+        </axis>
+      </joint>
+
+      <!-- UPPER_WRIST -->
+      <link name="UPPER_WRIST">
+        <pose>0.0285 -0.01 0.76825 0 1.5708 0</pose>
+        <inertial>
+          <pose>0.08056517 0.00980409 0.01872799 0 0 0</pose>
+          <mass>0.58097325</mass>
+          <inertia>
+            <ixx>0.00021268</ixx>
+            <ixy>5.21E-06</ixy>
+            <ixz>2.91E-06</ixz>
+            <iyy>0.00106371</iyy>
+            <iyz>1.1E-07</iyz>
+            <izz>0.00108465</izz>
+          </inertia>
+        </inertial>
+        <collision name="UPPER_WRIST_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>file://./home/drake-tests/common-files/obj/upper_wrist_link.obj</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="UPPER_WRIST_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>file://./home/drake-tests/common-files/obj/upper_wrist_link.obj</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+          
+        </visual>
+      </link>
+      <joint name="J4" type="revolute">
+        <parent>LOWER_WRIST</parent>
+        <child>UPPER_WRIST</child>
+        <pose>0 0 0 0 0 0</pose>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-2.67</lower>
+            <upper>2.67</upper>
+            <effort>7</effort>
+            <velocity>0.35</velocity>
+          </limit>
+          <dynamics>
+            <damping>0</damping>
+            <friction>0</friction>
+          </dynamics>
+        </axis>
+      </joint>
+
+      <!-- END_EFFECTOR -->
+      <link name="FINAL_JOINT_FRAME">
+        <pose>0.057 -0.01 0.87325 0 0 0</pose>
+      </link>
+
+      <!-- END_EFFECTOR -->
+      <link name="END_EFFECTOR">
+        <pose>0.057 -0.01 1.00325 0 0 0</pose>
+      </link>
+
+      <joint name="J5" type="revolute">
+        <parent>UPPER_WRIST</parent>
+        <child>FINAL_JOINT_FRAME</child>
+        <pose>0 0 0 0 0 0</pose>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-2.67</lower>
+            <upper>2.67</upper>
+            <effort>7</effort>
+            <velocity>0.35</velocity>
+          </limit>
+          <dynamics>
+            <damping>0</damping>
+            <friction>0</friction>
+          </dynamics>
+        </axis>
+      </joint>
+
+    <static>0</static>
+    </model>
+</sdf>

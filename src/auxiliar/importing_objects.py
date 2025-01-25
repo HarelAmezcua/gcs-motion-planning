@@ -5,7 +5,13 @@ from pydrake.all import (
     Parser, RigidTransform, RotationMatrix
 )
 
-def add_custom_robot(plant, sdf_path=r"/content/drive/MyDrive/laptop13enero/drake-proyectomodular/drake-tests/common-files/GEN3-LITE-PRIMITIVES/GEN3-LITE_PRIMITIVES.sdf"):
+def get_parent_directory():
+    # Get the absolute path of the current working directory
+    current_dir = os.getcwd()
+    parent_dir = os.path.abspath(os.path.join(current_dir, os.pardir))
+    return parent_dir
+
+def add_custom_robot(plant):
     """
     Adds a custom robot to the plant from an SDF file.
 
@@ -16,6 +22,8 @@ def add_custom_robot(plant, sdf_path=r"/content/drive/MyDrive/laptop13enero/drak
     Returns:
         The model instance of the added robot.
     """
+    # Get the path to the robot SDF file
+    sdf_path = os.path.join(get_parent_directory(), 'common-files','models','KINOVA_GEN3_LITE_PRIMITIVES','model.sdf')
 
     if not os.path.exists(sdf_path):
         raise FileNotFoundError(f"SDF file not found at {sdf_path}")
@@ -25,7 +33,7 @@ def add_custom_robot(plant, sdf_path=r"/content/drive/MyDrive/laptop13enero/drak
     plant.WeldFrames(plant.world_frame(), plant.GetFrameByName("BASE"))
     return robot_model
 
-def add_custom_wsg(plant, gripper_path=r"/content/drive/MyDrive/laptop13enero/drake-proyectomodular/drake-tests/common-files/final_gripper/final_gripper.sdf"):
+def add_custom_wsg(plant):
     """
     Adds a custom gripper to the plant from an SDF file.
 
@@ -36,6 +44,8 @@ def add_custom_wsg(plant, gripper_path=r"/content/drive/MyDrive/laptop13enero/dr
     Returns:
         The model instance of the added gripper.
     """
+    # Get the path to the gripper SDF file
+    gripper_path = os.path.join(get_parent_directory(), 'common-files','final_gripper','files','final_gripper.sdf')
 
     if not os.path.exists(gripper_path):
         raise FileNotFoundError(f"SDF file not found at {gripper_path}")
@@ -59,7 +69,7 @@ def weld_gripper_to_robot(plant, robot_model, gripper_model, ee_link_name="FINAL
     # Weld the frames together
     plant.WeldFrames(ee_frame, gripper_frame)
 
-def add_table(plant, table_path=r"/content/drive/MyDrive/laptop13enero/drake-proyectomodular/drake-tests/common-files/scene_objects/table/table_wide.sdf"):
+def add_table(plant):
     """
     Adds a table to the plant from an SDF file.
 
@@ -70,6 +80,8 @@ def add_table(plant, table_path=r"/content/drive/MyDrive/laptop13enero/drake-pro
     Returns:
         The model instance of the added table.
     """
+    # Get the path to the table SDF file
+    table_path = os.path.join(get_parent_directory(), 'common-files','scene_objects','table','table_wide.sdf')
 
     if not os.path.exists(table_path):
         raise FileNotFoundError(f"SDF file not found at {table_path}")
@@ -79,7 +91,7 @@ def add_table(plant, table_path=r"/content/drive/MyDrive/laptop13enero/drake-pro
     plant.WeldFrames(plant.world_frame(), plant.GetFrameByName("table_body"),translation_vector)
     return table_model
     
-def add_shelf(plant, shelf_path = r"/content/drive/MyDrive/laptop13enero/drake-proyectomodular/drake-tests/common-files/scene_objects/shelve_1/shelves.sdf"):
+def add_shelf(plant):
     """
     Adds a shelf to the plant from an SDF file.
 
@@ -90,6 +102,8 @@ def add_shelf(plant, shelf_path = r"/content/drive/MyDrive/laptop13enero/drake-p
     Returns:
         The model instance of the added shelf.
     """
+    # Get the path to the shelf SDF file
+    shelf_path = os.path.join(get_parent_directory(), 'common-files','scene_objects','shelve_1','shelves.sdf')
 
     parser = Parser(plant)
     table_model = parser.AddModels(shelf_path)
@@ -102,7 +116,7 @@ def add_shelf(plant, shelf_path = r"/content/drive/MyDrive/laptop13enero/drake-p
     plant.WeldFrames(plant.world_frame(), plant.GetFrameByName("shelves_body"), X_WS)
     return table_model
 
-def add_bin(plant, bin_path = r"/content/drive/MyDrive/laptop13enero/drake-proyectomodular/drake-tests/common-files/scene_objects/bin/bin.sdf"):
+def add_bin(plant):
     """
     Adds a shelf to the plant from an SDF file.
 
@@ -113,6 +127,7 @@ def add_bin(plant, bin_path = r"/content/drive/MyDrive/laptop13enero/drake-proye
     Returns:
         The model instance of the added shelf.
     """
+    bin_path = os.path.join(get_parent_directory(), 'common-files','scene_objects','bin','bin.sdf')
 
     parser = Parser(plant)
     bin_model = parser.AddModels(bin_path)
@@ -133,9 +148,9 @@ def add_objects(plant):
     Returns:
         A list of model instances of the added objects.
     """
-    alphabet_soup_path = "/home/drake-tests/common-files/hope_objects/alphabet_soup/alphabet_soup.sdf"
-    mustard_path = "/home/drake-tests/common-files/hope_objects/mustard/mustard.sdf"
-    cherries_path = "/home/drake-tests/common-files/hope_objects/cherries/cherries.sdf"
+    alphabet_soup_path = os.path.join(get_parent_directory(), 'common-files','hope_objects','alphabet_soup','alphabet_soup.sdf')
+    mustard_path = os.path.join(get_parent_directory(), 'common-files','hope_objects','mustard','mustard.sdf')    
+    cherries_path = os.path.join(get_parent_directory(), 'common-files','hope_objects','cherries','cherries.sdf')        
     
     object_paths = [alphabet_soup_path, mustard_path, cherries_path]
     objects_body_frame = { alphabet_soup_path: "body_alphabet_soup", mustard_path: "body_mustard", cherries_path: "body_cherries" }
