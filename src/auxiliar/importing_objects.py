@@ -87,7 +87,7 @@ def add_table(plant):
         raise FileNotFoundError(f"SDF file not found at {table_path}")
     parser = Parser(plant)
     table_model = parser.AddModels(table_path)
-    translation_vector = RigidTransform([0.5, -0.5, 0.0])
+    translation_vector = RigidTransform([0.0, 0.0, 0.0])
     plant.WeldFrames(plant.world_frame(), plant.GetFrameByName("table_body"),translation_vector)
     return table_model
     

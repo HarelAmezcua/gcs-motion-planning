@@ -22,8 +22,8 @@ def LoadRobot(plant: MultibodyPlant) -> Body:
     robot_model = add_custom_robot(plant)[0]
     gripper_model = add_custom_wsg(plant)[0]
     table_model = add_table(plant)[0]
-    shelf_model = add_shelf(plant)[0]
-    bin_model = add_bin(plant)[0]    
+    #shelf_model = add_shelf(plant)[0]
+    #bin_model = add_bin(plant)[0]    
     weld_gripper_to_robot(plant, robot_model, gripper_model, ee_link_name="FINAL_JOINT_FRAME")
     
     end_effector_body = plant.GetBodyByName("body_gripper", gripper_model)
