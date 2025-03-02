@@ -96,6 +96,7 @@ def set_initial_guess(plant,plant_context, initial_guess_dictionary, location):
     return q0
 
 
+
 def solve_ik(ik, q0):
     """Sets up and solves the IK problem."""
     prog = ik.get_mutable_prog()
@@ -153,3 +154,4 @@ def setup_diagram_and_context(builder, plant, scene_graph, meshcat):
     q0 = plant.GetPositions(plant_context)
     
     return diagram, context, plant_context, q0, visualizer
+
